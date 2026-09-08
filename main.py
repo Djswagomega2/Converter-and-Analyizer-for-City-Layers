@@ -1,10 +1,16 @@
 from pathlib import Path
+import sys
 from Converter import Converter
 
 def main():
     """This function is the main function that runs the converter"""
-    input_folder = Path("Excel Files") #we define the input folder where the excel files are located
-    output_folder = Path("Output XML Files") #we define the output folder where the xml files
+    if getattr(sys, 'frozen', False): #we check if the program is running as a frozen executable
+        program_folder = Path(sys.executable).resolve().parent #we define the program folder as the folder where the executable is located
+    else:
+        program_folder = Path(__file__).resolve().parent #we define the program folder as the folder where the main.py file is located
+
+    input_folder = program_folder / "Excel Files" #we define the input folder where the excel files are located
+    output_folder = program_folder / "Output XML Files" #we define the output folder where the xml files
     output_folder.mkdir(exist_ok=True) #we create the output folder if it doesn't exist
     excel_files = list(input_folder.glob("*.xlsx")) #we get a list of all the excel files in the input folder
 
