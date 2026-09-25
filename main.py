@@ -2,6 +2,10 @@ from pathlib import Path
 import sys
 from Converter import Converter
 
+#Todo:
+#Make it output a geojson file with the building info (the last 3 tabs of the excel file)
+#Find a way to scrape the geographic info we need for the geojson file (such as coordinate,year built,address, etc) from the internet (maybe use the building id to find the info on a website)
+#Find a way to make this work with a boarder range of programs to make this into an app 
 def main():
     """This function is the main function that runs the converter"""
     if getattr(sys, 'frozen', False): #we check if the program is running as a frozen executable
