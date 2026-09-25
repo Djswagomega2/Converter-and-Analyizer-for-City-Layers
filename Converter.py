@@ -5,10 +5,7 @@ import re
 from pathlib import Path
 
 #Todo: 
-#Make this work with a folder of excel files and output a folder of xml file
 #Make it only create an element if the value is not empty (currently it creates an empty element)
-#Make it output a geojson file with the building info (the last 3 tabs of the excel file)
-#Find a way to make this work with a boarder range of programs to make this into an app 
 
 class Converter:
 
@@ -72,8 +69,37 @@ class Converter:
             unit = match.group(2).strip()
 
             return name,unit
-        
-        return header,None #return the new header
+
+        units = ["kg/m3","J/kg.k","W/m.k"]
+
+        for unit in units:
+            if header.endswith(unit):
+                name = header[:-len(unit)].strip()
+                #print("RETURNING UNIT:", repr(unit))
+                return name, unit
+        return header,None #If we do not find a unit, we return the header as is and None for the unit
+
+    def normalize_unit(self, unit):
+        """This function normalizes the unit to be used in the xml file
+            @params string unit: a reference to the unit we want to normalize
+            @returns: the normalized unit"""
+
+        if unit is None:
+            return None
+
+        unit = unit.strip() #we strip the unit of any unnecessary spaces or characters and make it lowercase
+
+        #Define a dictionary of units and their normalized values
+        unit_dict = {
+            "kg/m3": "kg/m^3",
+            "J/kg.k": "J/kg.K",
+            "W/m.k": "W/m.K"
+        }
+
+        if unit in unit_dict:
+            return unit_dict[unit] #return the normalized unit
+
+        return unit
 
     def build_key_tree(self,xml_key):
         """This function builds a tree structure from the xml key sheet, which is used to generate the XML file
@@ -158,16 +184,28 @@ class Converter:
 
         tag = config["XML_Tag"] #we get the tag from the config
         source_column = config["Source_Column"] #we get the source column from the config
+        source_sheet = config["Source_Sheet"] #we get the source sheet from the config
 
         value = self.get_value(row, source_column) #we get the value from the row and source column
 
         _,unit = self.parse_header(source_column)  #Parse the unit from Excel header
+        unit = self.normalize_unit(unit)  #Normalize the unit for XML output
+
+        if "Density" in source_column:
+            print("SOURCE COLUMN:", repr(source_column))
+            print("PARSED UNIT:", repr(unit))
+
 
         #create attributes
         attributes = {}
 
-        if unit:
-            attributes["unit"] = unit #we add the unit to the attributes
+        if source_sheet == "Distribution Components" or source_sheet == "Energy Emitter Systems":
+            unit_attribute = "units"
+        else:
+            unit_attribute = "unit"
+
+        if value is not None and unit: #we check if the value is not None and the unit is not None
+            attributes[unit_attribute] = unit #we add the unit to the attributes
 
         #Create XML element
         element = ET.SubElement(parent_element,tag,attrib=attributes) #we create the new xml element with the given tag and attributes
@@ -212,8 +250,13 @@ class Converter:
         _,unit = self.parse_header(source_column)
         attributes = {}
 
-        if unit:
-            attributes["unit"] = unit #we add the unit to the attributes
+        if value is not None and unit:
+            attributes["units"] = unit #we add the unit to the attributes
+
+        print("REPEATING VALUE:", tag)
+        print("SOURCE COLUMN:", source_column)
+        print("PARSED UNIT:", unit)
+        print("ATTRIBUTES:", attributes)
 
         #If this list node has a child defined in the Data_Key (e.g. 'emitter_system_id' under 'energy_emitter_system'), wrap each value in <tag><child_tag>item</child_tag></tag>
         if children:
