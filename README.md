@@ -11,7 +11,7 @@ Data is organized hierarchically, moving from the most specific components—suc
 
 
 <!-- Start of picture text -->
-Materials<br>Non PV/PY Energy Emitter<br>Generation Seton<br>‘One (Reference by ID) Components<br>Insulation Physical<br>[_rsain StorageSone fone or On<br>one one<br>‘by(Reference Thermal [by(Reference Thermal<br>SterageiD)* | Storagea 0) ‘One or Multiple<br>Storage Medium | —on. Thermal Storage Distributi<br>on lone oF On<br>°<br>Muttple<br>Energy System Archetype<br><!-- End of picture text -->
+Materials<br>Non PV/PY Energy Emitter<br>Generation Seton<br>One (Reference by ID) Components<br>Insulation Physical<br>[_rsain StorageSone fone or On<br>one one<br>‘by(Reference Thermal [by(Reference Thermal<br>SterageiD)* | Storagea 0) ‘One or Multiple<br>Storage Medium | —on. Thermal Storage Distributi<br>on lone oF On<br>°<br>Muttple<br>Energy System Archetype<br><!-- End of picture text -->
 
 As shown in the diagram, the **ID is the key element of each component section** because it is used to connect and reference data across different sections of the system. For example, materials are referenced by their ID when creating **Insulation and Physical** 
 
@@ -444,47 +444,3 @@ Energy System Archetype:
 - **Systems (Required) <== Takes in Multiple System IDs** 
 
 ***Note make sure everything is spelt correctly before putting your excel file into the converter as the hub needs everything to be spelt EXACTLY the way their internal systems spells it** 
-
-# Converting your Excel File into XML 
-
-Once you are done editing our excel files, you will need to convert them into the XML format to be readable in city layers. To do this, we will use the Excel-to-XML Converter program here: (https://github.com/Djswagomega2/Converter-and-Analyizer-for-City- <u>Layers/tree/main). Once you get the GitHub page, download it by clicking on the</u> **_<u>code button</u>_** <u>(the big green button on the top right). After you click on it, a menu will appear once</u> you see it, click download as zip file and save it to your computer. 
-
-
-
-<!-- Start of picture text -->
-© Converterand-Analyizer-forCiy-Layers = = ware<br>0 ens ie<br>Add a README _—<br>ani Sepgeed waitiows<br>oa ° r " pcan .——ayers at Work  _ =e :<br><!-- End of picture text -->
-
-Once you save it to your computer, you can extract the program using your favorite file extractor. 
-
-One you extract the file, go into the contents of the folder by double clicking it, once you're inside, you should see a folder called **_<u>Excel Files.</u>_** 
-
-
-
-<!-- Start of picture text -->
-5 pps<br>= a2<br>e: aa Samer oasrersoos aseus<br><!-- End of picture text -->
-
-Put all your excel files that you wish to be converted into XML files into this folder 
-
-
-
-<!-- Start of picture text -->
-. fers<br>a<br>:<br>Ls] .2*<br>i.<br>.<br>oe<br>ex aa aenme@rcoaeSBrorvo ane<br><!-- End of picture text -->
-
-Once you're done start the program by double clicking on the Excel-XML-Converter application 
-
-
-
-<!-- Start of picture text -->
-= -<br>.<br>as<br>e a4 Samer casrrvoos me<br><!-- End of picture text -->
-
-Wait a couple of seconds while the app is converting all the files and once it's done it will close automatically. 
-
-After it's finished you should see all your converted files in the **_<u>Output XML Folder</u>_** 
-
-
-
-<!-- Start of picture text -->
-—<br>-<br>- *<br>.:.<br>i<br>.2<br>.<br>a<br>en ma @emevosBorsocs 3<br><!-- End of picture text -->
-
-You can now use the XML files for whatever your needs fit. Enjoy :) 
-
