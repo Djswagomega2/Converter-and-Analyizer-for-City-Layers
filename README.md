@@ -79,7 +79,7 @@ Materials:
 
 - **Conductivity – Decimal Number (Required)** 
 
-## Non-PV Generation Component: 
+Non-PV Generation Component: 
 
 - **Generation System ID-Whole Number (Required)** 
 
@@ -411,7 +411,7 @@ Energy Emitter System:
 
 - **Life Time – Whole Number (Required)** 
 
-## System: 
+System: 
 
 - **System ID (Required)** 
 
@@ -433,7 +433,7 @@ Energy Emitter System:
 
 - Life Time 
 
-## Energy System Archetype: 
+Energy System Archetype: 
 
 - Archetype Cluster ID 
 
